@@ -17,10 +17,10 @@ app.use((req, res, next) => {
     next();
 });
 
-
+// @note @crucial Express endpoint serving the contract's ABI and bytecode to the frontend
 app.get('/api/contract', async (req, res) => {
     try {
-        const contractPath = path.resolve(__dirname, 'build', 'Counter.json');
+        const contractPath = path.resolve(__dirname, 'artifacts/contracts/Counter.sol/Counter.json');
         const contractData = await fs.readJson(contractPath);
         res.json(contractData);
     } catch (error) {
