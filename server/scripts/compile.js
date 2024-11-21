@@ -12,7 +12,7 @@ const compile = async () => {
     // Read the Counter.sol file
     const source = await fs.readFile(contractPath, 'utf8');
 
-    // Prepare input for solc compiler
+    // Prepare input for solc compiler with explicit settings
     const input = {
         language: 'Solidity',
         sources: {
@@ -21,11 +21,26 @@ const compile = async () => {
             },
         },
         settings: {
+            optimizer: {
+                enabled: true,
+                runs: 200
+            },
+            evmVersion: "paris",
             outputSelection: {
                 '*': {
-                    '*': ['*'],
+                    '*': [
+                        'abi',
+                        'evm.bytecode',
+                        'evm.deployedBytecode',
+                        'evm.methodIdentifiers',
+                        'metadata'
+                    ],
                 },
             },
+            metadata: {
+                bytecodeHash: "ipfs",
+            },
+            viaIR: false
         },
     };
 
@@ -37,6 +52,10 @@ const compile = async () => {
         output.errors.forEach(error => {
             console.error(error.formattedMessage);
         });
+        // Throw error if there are any severe errors
+        if (output.errors.some(error => error.severity === 'error')) {
+            throw new Error('Compilation failed');
+        }
     }
 
     // Create build folder
@@ -50,7 +69,10 @@ const compile = async () => {
         {
             abi: contractOutput.abi,
             bytecode: contractOutput.evm.bytecode.object,
-        }
+            deployedBytecode: contractOutput.evm.deployedBytecode.object,
+            metadata: contractOutput.metadata,
+        },
+        { spaces: 2 }
     );
 
     console.log('Contract compiled successfully!');

@@ -1,1 +1,38 @@
-{"abi":[{"inputs":[{"internalType":"uint256","name":"startingValue","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"increment","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"number","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}],"bytecode":"6080604052348015600e575f5ffd5b506040516101f63803806101f68339818101604052810190602e9190606b565b805f81905550506091565b5f5ffd5b5f819050919050565b604d81603d565b81146056575f5ffd5b50565b5f815190506065816046565b92915050565b5f60208284031215607d57607c6039565b5b5f6088848285016059565b91505092915050565b6101588061009e5f395ff3fe608060405234801561000f575f5ffd5b5060043610610034575f3560e01c80638381f58a14610038578063d09de08a14610056575b5f5ffd5b610040610060565b60405161004d9190610095565b60405180910390f35b61005e610065565b005b5f5481565b5f5f815480929190610076906100db565b9190505550565b5f819050919050565b61008f8161007d565b82525050565b5f6020820190506100a85f830184610086565b92915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52601160045260245ffd5b5f6100e58261007d565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8203610117576101166100ae565b5b60018201905091905056fea26469706673582212200c289f7d1f9d22979453f9a19008bf42a978dde6d6402ed817b1f7437d9be44964736f6c634300081c0033"}
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "startingValue",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "increment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "number",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "6080604052348015600f57600080fd5b50604051610122380380610122833981016040819052602c916033565b600055604b565b600060208284031215604457600080fd5b5051919050565b60c9806100596000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80638381f58a146037578063d09de08a146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b60576059565b005b600080549080606683606d565b9190505550565b600060018201608c57634e487b7160e01b600052601160045260246000fd5b506001019056fea2646970667358221220a9f6ac415c3089cd7db9a651164381d81dcf7ce5401a11126029d2ac75b8976964736f6c634300081c0033",
+  "deployedBytecode": "6080604052348015600f57600080fd5b506004361060325760003560e01c80638381f58a146037578063d09de08a146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b60576059565b005b600080549080606683606d565b9190505550565b600060018201608c57634e487b7160e01b600052601160045260246000fd5b506001019056fea2646970667358221220a9f6ac415c3089cd7db9a651164381d81dcf7ce5401a11126029d2ac75b8976964736f6c634300081c0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"startingValue\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"increment\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"number\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"Counter.sol\":\"Counter\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"Counter.sol\":{\"keccak256\":\"0x9e00eea1e249c42b1cc38821b20430a0f5016116f78b613fd39a65c9733fe655\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2522db2a87bc2219a9d86a0c413dee47b39fe273a8728b0048d9007fcfda100c\",\"dweb:/ipfs/QmeaBZX7A7wetF73oenRdPoJLFaxy3mtx5mQ5Z64dU6URj\"]}},\"version\":1}"
+}
