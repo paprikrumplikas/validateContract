@@ -33,5 +33,11 @@ ERRORS AND THEIR FIEXES DURING VERIFICATION:
                     paths: {
                         artifacts: "./artifacts",  // Default
                         sources: "./contracts"     // Default
-    }
-}
+                    }
+                }
+
+
+4. ❌ Error: TypeError: contractData.bytecode is undefined
+    - Reasons potentaially: 
+        - caching issues
+        - @crucial the contract to be compiled has to be in the same directory where HH was installed in (now it is the server dir, but can be one of its subdirs as well)

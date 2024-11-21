@@ -1,4 +1,41 @@
 {
   "_format": "hh-sol-cache-2",
-  "files": {}
+  "files": {
+    "/home/orgovaan/web3/validateContract/server/contracts/Counter.sol": {
+      "lastModificationDate": 1732225138529,
+      "contentHash": "d3cbd8359162447e00036b2ae8d19e9d",
+      "sourceName": "contracts/Counter.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "Counter"
+      ]
+    }
+  }
 }

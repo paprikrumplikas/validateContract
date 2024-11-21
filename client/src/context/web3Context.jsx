@@ -34,12 +34,16 @@ export const StateContextProvider = ({ children }) => {
     }
 
     // Add this function to fetch the contract data
-    const fetchContractData = async () => {
+    const fetchContractData = async (retries = 3) => {
         try {
             const response = await fetch('http://localhost:5000/api/contract');
+            if (response.status === 503 && retries > 0) {
+                console.log(`Contract not ready, retrying... (${retries} attempts left)`);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                return fetchContractData(retries - 1);
+            }
             const data = await response.json();
             setContractData(data);
-            console.log('Contract data loaded:', data); // To verify the data
         } catch (error) {
             console.error('Failed to fetch contract data:', error);
             toast.error('Failed to fetch contract data');
@@ -124,7 +128,27 @@ export const StateContextProvider = ({ children }) => {
     const deployCounter = async (startingValue) => {
         try {
             if (!sdk) throw new Error('SDK not initialized');
+
+            // First, trigger recompilation
+            console.log("\n=== Triggering Contract Compilation ===");
+            const compileResponse = await fetch('http://localhost:5000/api/compile', {
+                method: 'POST'
+            });
+            const compileData = await compileResponse.json();
+            if (!compileData.success) {
+                throw new Error(`Compilation failed: ${compileData.message}`);
+            }
+            console.log("✅ Compilation successful");
+
+            // Fetch fresh contract data
+            await fetchContractData();
             if (!contractData) throw new Error('Contract data not loaded');
+
+            console.log('Contract data at deployment:', {
+                hasAbi: !!contractData.abi,
+                hasBytecode: !!contractData.bytecode,
+                bytecodeLength: contractData.bytecode?.length
+            });
 
             console.log("\n=== Starting Contract Deployment ===");
             console.log("📍 Starting Value:", startingValue);

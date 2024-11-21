@@ -21,9 +21,16 @@ app.use((req, res, next) => {
 app.get('/api/contract', async (req, res) => {
     try {
         const contractPath = path.resolve(__dirname, 'artifacts/contracts/Counter.sol/Counter.json');
+        console.log("Looking for contract at:", contractPath);
         const contractData = await fs.readJson(contractPath);
+        console.log("Contract data found:", {
+            hasAbi: !!contractData.abi,
+            hasBytecode: !!contractData.bytecode,
+            bytecodeLength: contractData.bytecode?.length
+        });
         res.json(contractData);
     } catch (error) {
+        console.error("Error reading contract:", error);
         res.status(500).json({ error: 'Failed to fetch contract data' });
     }
 });
@@ -70,6 +77,28 @@ app.post('/api/verify', async (req, res) => {
             success: false,
             message: error.message || 'Verification failed'
         });
+    }
+});
+
+// @crucial endpoint to trigger compilation from frontend
+app.post('/api/compile', async (req, res) => {
+    try {
+        console.log("\n=== Starting Contract Compilation ===");
+
+        // Delete artifacts folder
+        const artifactsPath = path.resolve(__dirname, 'artifacts');
+        await fs.remove(artifactsPath);
+        console.log("✅ Artifacts folder deleted");
+
+        // Compile contracts
+        const hre = require("hardhat");
+        await hre.run("compile", { force: true });
+        console.log("✅ Contracts compiled successfully");
+
+        res.json({ success: true, message: 'Compilation successful' });
+    } catch (error) {
+        console.error("❌ Compilation failed:", error);
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
