@@ -1,3 +1,4 @@
+const path = require('path');
 require("@nomicfoundation/hardhat-toolbox");
 require('dotenv').config();
 
@@ -10,6 +11,10 @@ if (!SEPOLIA_RPC_URL) {
 if (!ETHERSCAN_API_KEY) {
   console.error("Missing ETHERSCAN_API_KEY in .env file");
 }
+
+// Get the absolute path to the root node_modules 
+// @crucial so we can tell HH where to look for OZ contracts
+const SERVER_NODE_MODULES = path.join(__dirname, 'node_modules');
 
 module.exports = {
   defaultNetwork: "sepolia",  // @crucial this solves the error The selected network is "hardhat", which is not supported for contract verification.
@@ -30,5 +35,17 @@ module.exports = {
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY
+  },
+  paths: {
+    sources: "./contracts",
+    cache: "./cache",
+    artifacts: "./artifacts"
+  },
+  // Add this resolver configuration
+  resolver: {
+    paths: [
+      SERVER_NODE_MODULES,
+      'node_modules'
+    ]
   }
 };
